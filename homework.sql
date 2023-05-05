@@ -1,3 +1,33 @@
+-- FUNCTION --
+
+-- Change the customer of a rental
+
+SELECT *
+FROM rental;
+
+CREATE OR REPLACE FUNCTION change_customer(
+	_rental_id INTEGER,
+	new_customer INTEGER
+)
+RETURNS void AS $$
+	BEGIN
+		UPDATE rental
+		SET customer_id = new_customer
+		WHERE rental_id = _rental_id;
+	END;
+$$
+LANGUAGE plpgsql;
+
+SELECT *
+FROM rental;
+
+SELECT change_customer(11541, 341);
+
+
+-- PROCEDURE --
+
+-- Add a city name
+
 SELECT *
 FROM country;
 
